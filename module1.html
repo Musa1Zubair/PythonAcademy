@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 1: Hello, Python!</title>
+
+    <!-- CodeMirror CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/mode/python/python.min.js"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+    <header>
+        <h2>Level 1: Hello, Python!</h2>
+        <img src="../assets/python_mascot.css" alt="Python the Snake" id="mascot">
+    </header>
+
+    <section id="lesson-content">
+        <h3>Lesson: Hello, Python!</h3>
+        <p>Learn how to print your first message in Python.</p>
+
+        <h4>Task: Code the Message</h4>
+        <p>Help Python print a scrambled message in the correct order using <code>print()</code>.</p>
+
+        <h5>Write your code below:</h5>
+        <textarea id="code-editor" placeholder="Type your code here..."></textarea>
+        <button onclick="executeCode()">Run Code</button> <!-- Now it calls executeCode() -->
+        <div id="output"></div>
+    </section>
+
+    <footer>
+        <button onclick="nextModule(2)">Next Level</button>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/game.js"></script>
+    <script src="../js/codeEditor.js"></script>
+    <script src="../js/pythonRunner.js"></script>
+</body>
+</html>
