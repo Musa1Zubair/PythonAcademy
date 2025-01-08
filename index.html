@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Python Lessons</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #228B22, #006400); /* Jungle Green background */
+            color: #fff;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            overflow-y: auto; /* Allow scrolling */
+        }
+
+        /* Container for the whole page */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            margin-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        /* Hero Section */
+        #hero {
+            background-color: #006400; /* Dark jungle green */
+            color: #FFA500; /* Jungle Orange */
+            padding: 50px 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin-bottom: 30px;
+            max-width: 95%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        #hero .btn {
+            background-color: #FFA500; /* Jungle Orange */
+            color: #006400;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        #hero .btn:hover {
+            background-color: #006400;
+            color: #FFA500;
+            transform: scale(1.1);
+        }
+
+        /* Module Card Section */
+        #modules {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .module-card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            width: 280px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .module-card h3 {
+            color: #006400; /* Jungle Green */
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .module-card p {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .module-card .btn {
+            background-color: #228B22; /* Jungle Green */
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .module-card:hover .btn {
+            background-color: #FFA500; /* Jungle Orange */
+            color: #006400;
+        }
+
+        /* Slithering Snake */
+        #snake-container {
+            width: 300px;
+            position: absolute;
+            top: 10%; /* Move it upwards closer to the top */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust for exact centering */
+            animation: snakeSlide 6s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Central Point (Snake Body) */
+        .snake-body {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            background-color: #006400; /* Jungle Green */
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        /* Orbiting Circles (Planets) */
+        .planet {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #FFA500; /* Jungle Orange */
+            animation: orbit 6s linear infinite;
+        }
+
+        /* Orbit animation for both planets */
+        .planet:nth-child(1) {
+            animation-duration: 4s; /* Faster orbit for the smaller planet */
+            background-color: #FFD700; /* Sun (Outer Planet) */
+        }
+
+        .planet:nth-child(2) {
+            animation-duration: 6s; /* Slower orbit for the inner planet */
+            background-color: #228B22; /* Earth (Inner Planet) */
+        }
+
+        /* Planet Orbit Animation */
+        @keyframes orbit {
+            0% {
+                transform: rotate(0deg) translateX(60px); /* Outer circle */
+            }
+            100% {
+                transform: rotate(360deg) translateX(60px); /* Full orbit */
+            }
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #006400; /* Jungle Green */
+            color: white;
+            padding: 20px 0;
+            width: 100%;
+            text-align: center;
+            font-size: 1rem;
+            position: relative;
+            bottom: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #modules {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .module-card {
+                width: 90%;
+            }
+
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+
+            #hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section id="hero">
+            <h1>Welcome to Python Academy!</h1>
+            <p>Start your coding journey today. Learn Python with interactive lessons and fun challenges!</p>
+            <a href="#modules" class="btn">Start Learning</a>
+        </section>
+
+        <!-- Slithering Snake (Orbiting Circles) -->
+        <div id="snake-container">
+            <div class="snake-body"></div>
+            <div class="planet"></div> <!-- Outer Planet -->
+            <div class="planet"></div> <!-- Inner Planet -->
+        </div>
+
+        <!-- Module Cards Section -->
+        <section id="modules">
+            <div class="module-card">
+                <h3>Module 1: Hello, Python!</h3>
+                <p>Learn the basics of Python and write your first code!</p>
+                <a href="modules/module1.html" class="btn">Start Module</a>
+            </div>
+
+            <div class="module-card">
+                <h3>Module 2: Variables and Data Types</h3>
+                <p>Understand how to store and use data in Python.</p>
+                <a href="modules/module2.html" class="btn">Start Module</a>
+            </div>
+
+            <div class="module-card">
+                <h3>Module 3: Making Decisions</h3>
+                <p>Learn how to make decisions in Python with if statements.</p>
+                <a href="modules/module3.html" class="btn">Start Module</a>
+            </div>
+
+            <div class="module-card">
+                <h3>Module 4: Loops</h3>
+                <p>Master loops and iterate through data structures in Python.</p>
+                <a href="modules/module4.html" class="btn">Start Module</a>
+            </div>
+
+            <div class="module-card">
+                <h3>Module 5: Functions</h3>
+                <p>Learn how to organize code using functions.</p>
+                <a href="modules/module5.html" class="btn">Start Module</a>
+            </div>
+
+            <div class="module-card">
+                <h3>Module 6: Lists and Loops</h3>
+                <p>Combine lists and loops to solve problems more efficiently.</p>
+                <a href="modules/module6.html" class="btn">Start Module</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 Python Academy. All rights reserved.
+    </footer>
+
+</body>
+</html>
