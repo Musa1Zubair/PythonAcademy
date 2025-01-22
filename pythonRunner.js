@@ -1,8 +1,11 @@
-// pythonRunner.js
+// Function to get code from the CodeMirror editor (or from textarea in this case)
+function getCode() {
+    return document.getElementById("code-editor").value;
+}
 
-// Function to execute the Python code using an external library or API
+// Function to execute the Python code via Flask
 function executeCode() {
-    const code = getCode(); // get the code from the CodeMirror editor
+    const code = getCode(); // Get the code from the textarea
     const outputElement = document.getElementById('output');
     
     // Ensure the code is not empty
@@ -11,17 +14,24 @@ function executeCode() {
         return;
     }
 
-    // Call an API or a service to execute the Python code (Example: using Brython or an API)
-    try {
-        // Example for using Brython or Skulpt to execute code (or an API call)
-        // For this example, we're assuming we're executing Python code on the frontend (e.g., using Brython/Skulpt).
-        outputElement.innerHTML = "<p>Executing code...</p>";
+    // Show executing message
+    outputElement.innerHTML = "<p>Executing code...</p>";
 
-        // Simulating execution (replace with actual implementation)
-        let result = eval(code); // In production, replace with Python execution logic!
-
-        outputElement.innerHTML = `<pre>${result}</pre>`;
-    } catch (error) {
-        outputElement.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
-    }
+    // Send the Python code to the Flask backend via a POST request
+    fetch("/execute", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ code: code }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Display the output from the server
+        outputElement.innerHTML = `<pre>${data.output}</pre>`;
+    })
+    .catch(error => {
+        // Handle errors
+        outputElement.innerHTML = `<p style="color: red;">Error: ${error.toString()}</p>`;
+    });
 }
