@@ -3,7 +3,7 @@
 // Function to move to the next lesson (e.g., from Module 1 to Module 2)
 function nextModule(moduleNumber) {
     // You can handle level transitions here
-    const nextModuleUrl = `./modules/level${moduleNumber}.html`;
+    const nextModuleUrl = `./module${moduleNumber}.html`;
     window.location.href = nextModuleUrl;
 }
 
@@ -15,4 +15,9 @@ function showCongrats(message) {
 // Function to navigate back to the homepage (index.html)
 function goHome() {
     window.location.href = 'index.html';
+}
+
+
+function completeChallenge() {
+    window.location.href = '..';
 }
