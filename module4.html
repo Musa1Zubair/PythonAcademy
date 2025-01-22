@@ -3,26 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level 4: Loops</title>
+    <title>Level 3: Making Decisions</title>
     <!-- Add in <head> tag of your HTML file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/mode/python/python.min.js"></script>
     <link rel="stylesheet" href="../assets/style.css">
 
+    <style>
+        /* Slithering Snake Animation - Orbiting Circles */
+        #snake-container {
+            width: 300px;
+            position: absolute;
+            top: 10%; /* Adjust the vertical positioning */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Center it properly */
+            animation: snakeSlide 6s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Central Point (Snake Body) */
+        .snake-body {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            background-color: #006400; /* Jungle Green */
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        /* Orbiting Circles (Planets) */
+        .planet {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #FFA500; /* Jungle Orange */
+            animation: orbit 6s linear infinite;
+        }
+
+        .planet:nth-child(1) {
+            animation-duration: 4s; /* Outer planet (Sun) */
+            background-color: #FFD700; /* Sun color */
+        }
+
+        .planet:nth-child(2) {
+            animation-duration: 6s; /* Inner planet (Earth) */
+            background-color: #228B22; /* Earth color */
+        }
+
+        /* Planet Orbit Animation */
+        @keyframes orbit {
+            0% {
+                transform: rotate(0deg) translateX(60px); /* Outer circle */
+            }
+            100% {
+                transform: rotate(360deg) translateX(60px); /* Full orbit */
+            }
+        }
+    </style>
+
 </head>
 <body>
+
+    <!-- Slithering Snake (Orbiting Circles) -->
+    <div id="snake-container">
+        <div class="snake-body"></div>
+        <div class="planet"></div> <!-- Outer Planet -->
+        <div class="planet"></div> <!-- Inner Planet -->
+    </div>
+
     <header>
         <h2>Level 4: Loops</h2>
-        <img src="../assets/python_mascot.css" alt="Python the Snake" id="mascot">
     </header>
 
     <section id="lesson-content">
-        <h3>Lesson: Loops</h3>
-        <p>Loops allow you to repeat actions multiple times. In Python, we can use <code>for</code> and <code>while</code> loops.</p>
+        <h3>Lesson: If Statements</h3>
+        <p>In Python, we use <code>if</code>, <code>elif</code>, and <code>else</code> statements to make decisions in our programs.</p>
 
-        <h4>Task: Treasure Hunt</h4>
-        <p>Help Python find treasures by repeating a task. Use loops to collect all the treasures and avoid traps!</p>
+        <h4>Task: Choose Your Adventure</h4>
+        <p>Help Python choose a path in the jungle based on a decision. If the path is clear, Python moves forward; otherwise, Python chooses another path.</p>
 
         <h5>Write your code below:</h5>
         <textarea id="code-editor" placeholder="Type your code here..."></textarea>
@@ -30,7 +92,7 @@
         <div id="output"></div>
 
         <h4>What to do next:</h4>
-        <p>Write a loop that helps Python collect all the treasures, then click "Run Code".</p>
+        <p>Click "Run Code" after writing your decision logic to see if Python makes the right choices!</p>
     </section>
 
     <footer>
@@ -41,5 +103,6 @@
     <script src="../js/game.js"></script>
     <script src="../js/codeEditor.js"></script>
     <script src="../js/pythonRunner.js"></script>
+
 </body>
 </html>
