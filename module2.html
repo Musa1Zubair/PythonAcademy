@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level 2: Variables and Data Types</title>
+    <title>Level 3: Making Decisions</title>
     <!-- Add in <head> tag of your HTML file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.js"></script>
@@ -11,49 +11,6 @@
     <link rel="stylesheet" href="../assets/style.css">
 
     <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(45deg, #228B22, #006400); /* Jungle Green background */
-            color: #fff;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 20px;
-            overflow-y: auto; /* Allow scrolling */
-        }
-
-        /* Container for the whole page */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            text-align: center;
-            margin-top: 50px;
-            padding-bottom: 50px;
-        }
-
-        /* Hero Section */
-        #hero {
-            background-color: #006400; /* Dark jungle green */
-            color: #FFA500; /* Jungle Orange */
-            padding: 50px 20px;
-            border-radius: 15px;
-            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            margin-bottom: 30px;
-            max-width: 95%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
         /* Slithering Snake Animation - Orbiting Circles */
         #snake-container {
             width: 300px;
@@ -106,112 +63,41 @@
                 transform: rotate(360deg) translateX(60px); /* Full orbit */
             }
         }
-
-        /* Lesson Content Section */
-        #lesson-content {
-            width: 80%;
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            color: #333;
-            border-radius: 8px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        header h2 {
-            font-size: 2.5rem;
-        }
-
-        /* Remove the Python mascot GIF from here, as we're using animation now */
-        #mascot {
-            display: none;
-        }
-
-        /* Code Editor Styles */
-        #code-editor {
-            width: 100%;
-            height: 200px;
-            padding: 10px 0; /* Remove left padding to make the cursor align to the left */
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            margin-bottom: 20px;
-            font-size: 1.2rem; /* Increase font size */
-            font-weight: bold; /* Make text bold */
-            text-align: left; /* Align text to the left */
-            direction: ltr; /* Ensure text and cursor go from left to right */
-            background-color: #f4f4f4; /* Light background color for textarea */
-            caret-color: #FFA500; /* Optional: Change cursor color */
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #228B22;
-            color: white;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        button:hover {
-            background-color: #006400;
-        }
-
-        /* Footer Section */
-        footer {
-            background-color: #006400; /* Jungle Green */
-            color: white;
-            padding: 20px 0;
-            width: 100%;
-            text-align: center;
-            font-size: 1rem;
-            position: relative;
-            bottom: 0;
-        }
     </style>
+
 </head>
 <body>
 
-    <div class="container">
-        <!-- Slithering Snake (Orbiting Circles) -->
-        <div id="snake-container">
-            <div class="snake-body"></div>
-            <div class="planet"></div> <!-- Outer Planet -->
-            <div class="planet"></div> <!-- Inner Planet -->
-        </div>
-
-        <!-- Lesson Content Section -->
-        <section id="lesson-content">
-            <header>
-                <h2>Level 2: Variables and Data Types</h2>
-                <!-- Removed the Python mascot image since we're using animation -->
-            </header>
-
-            <h3>Lesson: Variables and Data Types</h3>
-            <p>In Python, we use variables to store values. We also have different data types like integers, floats, and strings.</p>
-
-            <h4>Task: Storing Data</h4>
-            <p>Let's create some variables to store your name, age, and the price of a fruit.</p>
-
-            <h5>Write your code below:</h5>
-            <textarea id="code-editor" placeholder="Type your code here..."></textarea>
-            <button onclick="runCode()">Run Code</button>
-            <div id="output"></div>
-
-            <h4>What to do next:</h4>
-            <p>After writing your code, click "Run Code". The output should print the name, age, and fruit price you assigned to the variables.</p>
-        </section>
-
-        <footer>
-            <button onclick="nextModule(3)">Next Level</button>
-        </footer>
+    <!-- Slithering Snake (Orbiting Circles) -->
+    <div id="snake-container">
+        <div class="snake-body"></div>
+        <div class="planet"></div> <!-- Outer Planet -->
+        <div class="planet"></div> <!-- Inner Planet -->
     </div>
+
+    <header>
+        <h2>Level 2: Varibles and Data Types</h2>
+    </header>
+
+    <section id="lesson-content">
+        <h3>Lesson: If Statements</h3>
+        <p>In Python, we use <code>if</code>, <code>elif</code>, and <code>else</code> statements to make decisions in our programs.</p>
+
+        <h4>Task: Choose Your Adventure</h4>
+        <p>Help Python choose a path in the jungle based on a decision. If the path is clear, Python moves forward; otherwise, Python chooses another path.</p>
+
+        <h5>Write your code below:</h5>
+        <textarea id="code-editor" placeholder="Type your code here..."></textarea>
+        <button onclick="runCode()">Run Code</button>
+        <div id="output"></div>
+
+        <h4>What to do next:</h4>
+        <p>Click "Run Code" after writing your decision logic to see if Python makes the right choices!</p>
+    </section>
+
+    <footer>
+        <button onclick="nextModule(3)">Next Level</button>
+    </footer>
 
     <script src="../js/app.js"></script>
     <script src="../js/game.js"></script>
