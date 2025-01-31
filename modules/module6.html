@@ -3,106 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level 3: Making Decisions</title>
-    <!-- Add in <head> tag of your HTML file -->
+    <title>Module 5: Functions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/mode/python/python.min.js"></script>
     <link rel="stylesheet" href="../assets/style.css">
 
     <style>
-        /* Slithering Snake Animation - Orbiting Circles */
-        #snake-container {
-            width: 300px;
-            position: absolute;
-            top: 10%; /* Adjust the vertical positioning */
-            left: 50%; /* Center horizontally */
-            transform: translateX(-50%); /* Center it properly */
-            animation: snakeSlide 6s ease-in-out infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #006400; /* Dark green background */
+            color: #FFD700; /* Golden text color */
         }
 
-        /* Central Point (Snake Body) */
-        .snake-body {
-            width: 30px;
-            height: 30px;
-            position: absolute;
-            background-color: #006400; /* Jungle Green */
-            border-radius: 50%;
-            z-index: 10;
+        h1, h2, h3 {
+            margin-top: 0;
         }
 
-        /* Orbiting Circles (Planets) */
-        .planet {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #FFA500; /* Jungle Orange */
-            animation: orbit 6s linear infinite;
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #FFD700; /* Golden text color */
         }
 
-        .planet:nth-child(1) {
-            animation-duration: 4s; /* Outer planet (Sun) */
-            background-color: #FFD700; /* Sun color */
+        h2 {
+            font-size: 2rem;
+            color: #FFA500; /* Orange for headings */
+            margin-bottom: 15px;
         }
 
-        .planet:nth-child(2) {
-            animation-duration: 6s; /* Inner planet (Earth) */
-            background-color: #228B22; /* Earth color */
+        h3 {
+            font-size: 1.5rem;
+            color: #FFA500; /* Orange for subheadings */
+            margin-bottom: 10px;
         }
 
-        /* Planet Orbit Animation */
-        @keyframes orbit {
-            0% {
-                transform: rotate(0deg) translateX(60px); /* Outer circle */
-            }
-            100% {
-                transform: rotate(360deg) translateX(60px); /* Full orbit */
-            }
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
         }
+
+        code {
+            background-color: #004d00; /* Darker green for code blocks */
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: "Courier New", Courier, monospace;
+            color: #FFD700; /* Golden text color */
+        }
+
+        pre {
+            background-color: #004d00; /* Darker green for code blocks */
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #FFD700; /* Golden text color */
+        }
+
+        /* Sections */
+        .section {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            background: #004d00; /* Darker green for sections */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity, .quiz, .challenge {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .activity {
+            background-color: #005a00; /* Slightly lighter green for activities */
+            border-left: 5px solid #FFA500; /* Orange accent */
+        }
+
+        .quiz {
+            background-color: #005a00; /* Slightly lighter green for quizzes */
+            border-left: 5px solid #FF6347; /* Tomato accent */
+        }
+
+        .challenge {
+            background-color: #005a00; /* Slightly lighter green for challenges */
+            border-left: 5px solid #32CD32; /* Lime green accent */
+        }
+
+        /* Buttons */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #006400; /* Dark green text */
+            background-color: #FFD700; /* Golden background */
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #FFA500; /* Orange on hover */
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
     </style>
-
 </head>
 <body>
-
-    <!-- Slithering Snake (Orbiting Circles) -->
-    <div id="snake-container">
-        <div class="snake-body"></div>
-        <div class="planet"></div> <!-- Outer Planet -->
-        <div class="planet"></div> <!-- Inner Planet -->
-    </div>
-
     <header>
-        <h2>Level 6: Functions</h2>
+        <h1>Module 5: Functions</h1>
+        <p>Learn how to create reusable blocks of code to save time and make your programs cleaner!</p>
     </header>
 
-    <section id="lesson-content">
-        <h3>Lesson: If Statements</h3>
-        <p>In Python, we use <code>if</code>, <code>elif</code>, and <code>else</code> statements to make decisions in our programs.</p>
+    <div class="section fade-in">
+        <h2>What Are Functions?</h2>
+        <p>Functions are like magic boxes! When you give them something, they give you something back. This helps you avoid repeating the same actions over and over again in your code.</p>
+        <p>Imagine you have a magic box that always gives you a toy when you ask. You don’t need to say how to make the toy every time, just ask for it and it’s ready!</p>
+    </div>
 
-        <h4>Task: Choose Your Adventure</h4>
-        <p>Help Python choose a path in the jungle based on a decision. If the path is clear, Python moves forward; otherwise, Python chooses another path.</p>
+    <div class="section fade-in">
+        <h2>How to Create a Function</h2>
+        <p>In Python, we use <code>def</code> to create a function. The word <code>def</code> stands for "define," which means we are telling Python to create this magic box!</p>
+        <pre><code>def say_hello():
+    print("Hello, friend!")</code></pre>
+        <p>To use this function, you just need to call it like this:</p>
+        <pre><code>say_hello()  # This will print "Hello, friend!"</code></pre>
+    </div>
 
-        <h5>Write your code below:</h5>
-        <textarea id="code-editor" placeholder="Type your code here..."></textarea>
-        <button onclick="runCode()">Run Code</button>
-        <div id="output"></div>
+    <div class="section fade-in">
+        <h2>Using Functions with Input</h2>
+        <p>We can also give our function some information to work with. This is called an "argument." For example, if we want to greet someone by name, we can create a function that takes a name and says "Hello, [name]!"</p>
+        <pre><code>def greet(name):
+    print("Hello, " + name + "!")</code></pre>
+        <p>Now, we can give it a name and it will greet that person:</p>
+        <pre><code>greet("Alice")  # This will print "Hello, Alice!"</code></pre>
+    </div>
 
-        <h4>What to do next:</h4>
-        <p>Click "Run Code" after writing your decision logic to see if Python makes the right choices!</p>
-    </section>
+    <div class="section activity fade-in">
+        <h3>Let’s Practice!</h3>
+        <p>Try creating your own function!</p>
+        <ol>
+            <li>Create a function called <code>greet_pet</code> that takes a pet's name as an argument and says "Hello, [pet_name]!"</li>
+            <li>Call the function with your pet's name or your favorite animal.</li>
+        </ol>
+        <p>Here’s an example:</p>
+        <pre><code>def greet_pet(pet_name):
+    print("Hello, " + pet_name + "!")</code></pre>
+    </div>
+
+    <div class="section quiz fade-in">
+        <h3>Quick Quiz</h3>
+        <ol>
+            <li>What is a function in Python?</li>
+            <li>What do we use to define a function in Python?</li>
+            <li>How do we call a function we have created?</li>
+        </ol>
+    </div>
+
+    <div class="section challenge fade-in">
+        <h3>Challenge</h3>
+        <p>Write a function called <code>describe_pet</code> that takes the pet's name and type (like "dog" or "cat") as arguments. Then, print a message that describes the pet, like: "My pet [name] is a [type]."</p>
+        <pre><code>def describe_pet(name, type):
+    print("My pet " + name + " is a " + type + ".")</code></pre>
+    </div>
+
+    <div class="section editor-container fade-in">
+        <h2>Try It Yourself!</h2>
+        <p>Use the code editor below to practice what you’ve learned:</p>
+        <iframe src="https://trinket.io/embed/python" width="100%" height="400" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+    </div>
 
     <footer>
-        <button onclick="nextModule(7)">Next Level</button>
+        <button onclick="nextModule(6)">Next Level</button> | <a href="#">Back to Top</a></p>
     </footer>
-
-    <script src="../js/app.js"></script>
-    <script src="../js/game.js"></script>
-    <script src="../js/codeEditor.js"></script>
-    <script src="../js/pythonRunner.js"></script>
-
 </body>
 </html>
