@@ -3,106 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level 3: Making Decisions</title>
-    <!-- Add in <head> tag of your HTML file -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/mode/python/python.min.js"></script>
-    <link rel="stylesheet" href="../assets/style.css">
-
+    <title>Introduction to Python</title>
     <style>
-        /* Slithering Snake Animation - Orbiting Circles */
-        #snake-container {
-            width: 300px;
-            position: absolute;
-            top: 10%; /* Adjust the vertical positioning */
-            left: 50%; /* Center horizontally */
-            transform: translateX(-50%); /* Center it properly */
-            animation: snakeSlide 6s ease-in-out infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #006400; /* Dark green background */
+            color: #FFD700; /* Golden text color */
         }
 
-        /* Central Point (Snake Body) */
-        .snake-body {
-            width: 30px;
-            height: 30px;
-            position: absolute;
-            background-color: #006400; /* Jungle Green */
-            border-radius: 50%;
-            z-index: 10;
+        h1, h2, h3 {
+            margin-top: 0;
         }
 
-        /* Orbiting Circles (Planets) */
-        .planet {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #FFA500; /* Jungle Orange */
-            animation: orbit 6s linear infinite;
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #FFD700; /* Golden text color */
         }
 
-        .planet:nth-child(1) {
-            animation-duration: 4s; /* Outer planet (Sun) */
-            background-color: #FFD700; /* Sun color */
+        h2 {
+            font-size: 2rem;
+            color: #FFA500; /* Orange for headings */
+            margin-bottom: 15px;
         }
 
-        .planet:nth-child(2) {
-            animation-duration: 6s; /* Inner planet (Earth) */
-            background-color: #228B22; /* Earth color */
+        h3 {
+            font-size: 1.5rem;
+            color: #FFA500; /* Orange for subheadings */
+            margin-bottom: 10px;
         }
 
-        /* Planet Orbit Animation */
-        @keyframes orbit {
-            0% {
-                transform: rotate(0deg) translateX(60px); /* Outer circle */
-            }
-            100% {
-                transform: rotate(360deg) translateX(60px); /* Full orbit */
-            }
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        code {
+            background-color: #004d00; /* Darker green for code blocks */
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: "Courier New", Courier, monospace;
+            color: #FFD700; /* Golden text color */
+        }
+
+        pre {
+            background-color: #004d00; /* Darker green for code blocks */
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #FFD700; /* Golden text color */
+        }
+
+        /* Sections */
+        .section {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            background: #004d00; /* Darker green for sections */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity, .quiz, .challenge {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .activity {
+            background-color: #005a00; /* Slightly lighter green for activities */
+            border-left: 5px solid #FFA500; /* Orange accent */
+        }
+
+        .quiz {
+            background-color: #005a00; /* Slightly lighter green for quizzes */
+            border-left: 5px solid #FF6347; /* Tomato accent */
+        }
+
+        .challenge {
+            background-color: #005a00; /* Slightly lighter green for challenges */
+            border-left: 5px solid #32CD32; /* Lime green accent */
+        }
+
+        /* Buttons */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #006400; /* Dark green text */
+            background-color: #FFD700; /* Golden background */
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #FFA500; /* Orange on hover */
+        }
+
+        /* Header */
+        header {
+            background: #004d00; /* Darker green for header */
+            color: #FFD700; /* Golden text color */
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid #FFA500; /* Orange accent */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            color: #FFD700; /* Golden text color */
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #004d00; /* Darker green for footer */
+            color: #FFD700; /* Golden text color */
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #FFA500; /* Orange for links */
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Interactive Editor */
+        .editor-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: #004d00; /* Darker green for editor container */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .editor-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 5px;
         }
     </style>
-
 </head>
 <body>
 
-    <!-- Slithering Snake (Orbiting Circles) -->
-    <div id="snake-container">
-        <div class="snake-body"></div>
-        <div class="planet"></div> <!-- Outer Planet -->
-        <div class="planet"></div> <!-- Inner Planet -->
-    </div>
-
     <header>
-        <h2>Level 1: What is Python?</h2>
+        <h1>Introduction to Python</h1>
+        <p>Learn the basics of Python programming!</p>
     </header>
 
-    <section id="lesson-content">
-        <h3>Lesson: If Statements</h3>
-        <p>In Python, we use <code>if</code>, <code>elif</code>, and <code>else</code> statements to make decisions in our programs.</p>
+    <div class="section fade-in">
+        <h2>What is Python?</h2>
+        <p>Python is a high-level programming language that’s known for its simplicity and versatility. It's used for building websites, analyzing data, automating tasks, and much more!</p>
+        <p>Python was created by <strong>Guido van Rossum</strong> in the late 1980s and has since become one of the most popular programming languages worldwide. Python is easy to read, write, and maintain, making it an excellent choice for beginners.</p>
+    </div>
 
-        <h4>Task: Choose Your Adventure</h4>
-        <p>Help Python choose a path in the jungle based on a decision. If the path is clear, Python moves forward; otherwise, Python chooses another path.</p>
+    <div class="section fade-in">
+        <h2>Why Learn Python?</h2>
+        <p>Python is used in many fields such as:</p>
+        <ul>
+            <li><strong>Web Development:</strong> Python can be used to create dynamic websites using frameworks like Django or Flask.</li>
+            <li><strong>Data Science:</strong> Python is great for analyzing data, using libraries like Pandas and NumPy.</li>
+            <li><strong>Machine Learning:</strong> Python has powerful tools like TensorFlow and scikit-learn for AI and machine learning tasks.</li>
+            <li><strong>Automation:</strong> With Python, you can automate repetitive tasks, like organizing files or sending emails.</li>
+        </ul>
+    </div>
 
-        <h5>Write your code below:</h5>
-        <textarea id="code-editor" placeholder="Type your code here..."></textarea>
-        <button onclick="executeCode()">Run Code</button>
-        <div id="output"></div>
+    <div class="section fade-in">
+        <h2>Writing Your First Python Code</h2>
+        <p>Let’s start by writing a simple Python program. Here’s how you can print "Hello, World!" to the screen:</p>
+        <pre><code>print("Hello, World!")</code></pre>
+        <p>When you run this code, Python will display the message "Hello, World!" on the screen.</p>
+    </div>
 
-        <h4>What to do next:</h4>
-        <p>Click "Run Code" after writing your decision logic to see if Python makes the right choices!</p>
-    </section>
+    <div class="section activity fade-in">
+        <h3>Let’s Practice!</h3>
+        <p>Try writing a Python program that prints your name:</p>
+        <pre><code>print("Your Name")</code></pre>
+        <p>Replace "Your Name" with your actual name, and run the program!</p>
+    </div>
+
+    <div class="section quiz fade-in">
+        <h3>Quick Quiz</h3>
+        <ol>
+            <li>Who created Python?</li>
+            <li>What are some common applications of Python?</li>
+            <li>How do you print something in Python?</li>
+        </ol>
+    </div>
+
+    <div class="section challenge fade-in">
+        <h3>Challenge</h3>
+        <p>Write a Python program that prints your name, age, and favorite color in one sentence, like this:</p>
+        <pre><code>My name is [name], I am [age] years old, and my favorite color is [color].</code></pre>
+    </div>
+
+    <div class="section editor-container fade-in">
+        <h2>Try It Yourself!</h2>
+        <p>Use the code editor below to practice writing your first Python program:</p>
+        <iframe src="https://trinket.io/embed/python" width="100%" height="400" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+    </div>
 
     <footer>
-        <button onclick="nextModule(2)">Next Level</button>
+        <button onclick="nextModule(2)">Next Lesson</button> | <a href="#">Back to Top</a>
     </footer>
-
-    <script src="../js/app.js"></script>
-    <script src="../js/game.js"></script>
-    <script src="../js/codeEditor.js"></script>
-    <script src="../js/pythonRunner.js"></script>
 
 </body>
 </html>
