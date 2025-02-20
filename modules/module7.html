@@ -4,46 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Final Boss Battle</title>
-    <!-- Add in <head> tag of your HTML file -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/mode/python/python.min.js"></script>
     <link rel="stylesheet" href="../assets/style.css">
+    <script>
+        let guardianHP = 100;
 
+        function updateOutput(message) {
+            document.getElementById("game-output").innerHTML += "<br>" + message;
+        }
+
+        function startBattle() {
+            document.getElementById("game-output").innerHTML = "The Python Guardian challenges you!<br>" +
+                "You must solve coding challenges to defeat it!<br><br>Guardian HP: " + guardianHP;
+            document.getElementById("choices").style.display = "block";
+        }
+
+        function attack(choice) {
+            if (guardianHP <= 0 || guardianHP >= 150) {
+                return;
+            }
+
+            if (choice === "1") {
+                let answer = document.getElementById("answer1").value;
+                if (answer.trim().toLowerCase() === "python battle!") {
+                    updateOutput("Correct! You dealt 10 damage!");
+                    guardianHP -= 10;
+                } else {
+                    updateOutput("Wrong! The Guardian grows stronger!");
+                    guardianHP += 5;
+                }
+            } else if (choice === "2") {
+                let answer = document.getElementById("answer2").value;
+                if (answer.trim() === "5") {
+                    updateOutput("Great! You hit the Guardian 20 times!");
+                    guardianHP -= 20;
+                } else {
+                    updateOutput("Incorrect! The Guardian regains health!");
+                    guardianHP += 10;
+                }
+            } else if (choice === "3") {
+                let answer = document.getElementById("answer3").value;
+                if (answer.toLowerCase().includes("victory")) {
+                    updateOutput("Amazing! Your function worked! 40 damage!");
+                    guardianHP -= 40;
+                } else {
+                    updateOutput("Oops! The Guardian is still standing!");
+                    guardianHP += 15;
+                }
+            }
+
+            document.getElementById("game-output").innerHTML += "<br>Guardian HP: " + guardianHP;
+            if (guardianHP <= 0) {
+                updateOutput("\nCongratulations! You defeated the Python Guardian and completed your training!");
+            } else if (guardianHP >= 150) {
+                updateOutput("The Guardian has become too powerful! You must retreat and train more!");
+            }
+        }
+    </script>
 </head>
-<body>
+<body class="boss-battle-page">
     <header>
-        <h2>Final Boss Battle: Save the Kingdom!</h2>
-
+        <h1>Final Boss Battle</h1>
+        <p>Use your Python skills to defeat the Python Guardian!</p>
     </header>
+    <div class="section">
+        <button id="execute-btn" onclick="startBattle()">Start Battle</button>
+        <div id="game-output" class="output"></div>
+        
+        <div id="choices" style="display:none;">
+            <h3>Choose your attack:</h3>
+            
+            <div class="attack-section">
+                <h4>Basic Attack (Variables & Printing) - 10 damage</h4>
+                <p>What will this print?</p>
+                <pre>print("Python Battle!")</pre>
+                <input type="text" id="answer1" placeholder="Enter your answer">
+                <button onclick="attack('1')">Submit Answer</button>
+            </div>
+            <br>
 
-    <section id="lesson-content">
-        <h3>Final Challenge</h3>
-        <p>The kingdom is under attack! Use all the coding skills you've learned to defeat the evil sorcerer and save the kingdom.</p>
+            <div class="attack-section">
+                <h4>Special Attack (Loops & Conditionals) - 20 damage</h4>
+                <p>Fill in the missing part:</p>
+                <pre>for i in range(___): print("Attack!")</pre>
+                <input type="text" id="answer2" placeholder="Enter your answer">
+                <button onclick="attack('2')">Submit Answer</button>
+            </div>
+            <br>
 
-        <h4>Tasks:</h4>
-        <ul>
-            <li>Decode the Sorcerer’s Message using loops and if statements.</li>
-            <li>Prepare the Army by using functions to organize troops.</li>
-            <li>Defeat the Sorcerer by applying all your coding skills!</li>
-        </ul>
-
-        <h5>Write your code below:</h5>
-        <textarea id="code-editor" placeholder="Type your code here..."></textarea>
-        <button onclick="runCode()">Run Code</button>
-        <div id="output"></div>
-
-        <h4>What to do next:</h4>
-        <p>Complete the challenges using your coding skills to save the kingdom!</p>
-    </section>
-
+            <div class="attack-section">
+                <h4>Ultimate Attack (Functions) - 40 damage</h4>
+                <p>Write a function that returns "Victory!"</p>
+                <pre>def battle(): return _____</pre>
+                <input type="text" id="answer3" placeholder="Enter your answer">
+                <button onclick="attack('3')">Submit Answer</button>
+            </div>
+        </div>
+    </div>
     <footer>
-        <button onclick="completeChallenge()">Complete Challenge</button>
+        <p>&copy; 2025 Python Academy</p>
     </footer>
-
-    <script src="../js/app.js"></script>
-    <script src="../js/game.js"></script>
-    <script src="../js/codeEditor.js"></script>
-    <script src="../js/pythonRunner.js"></script>
 </body>
 </html>
+
