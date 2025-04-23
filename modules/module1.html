@@ -83,6 +83,19 @@
             color: #FFD700;
             margin-top: 40px;
         }
+        #game-container {
+            width: 720px;
+            height: 250px;
+            margin: 20px auto;
+            position: relative;
+            border: 2px solid #FFA500;
+        }
+        .game-instructions {
+            background-color: #002d00;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
     </style>
     <script>
         let speech;
@@ -138,6 +151,12 @@
 
         window.onload = function() {
             window.scrollTo(0, 0);
+            
+            // Load the game in an iframe after the page loads
+            const gameFrame = document.getElementById('game-frame');
+            if (gameFrame) {
+                gameFrame.src = "https://trinket.io/embed/pygame/python-mario-quiz";
+            }
         };
 
         window.speechSynthesis.onvoiceschanged = () => {
@@ -158,7 +177,7 @@
 
     <div class="section fade-in">
         <h2>What is Python?</h2>
-        <p>Python is a high-level programming language that’s known for its simplicity and versatility. It's used for building websites, analyzing data, automating tasks, and much more!</p>
+        <p>Python is a high-level programming language that's known for its simplicity and versatility. It's used for building websites, analyzing data, automating tasks, and much more!</p>
         <p>Python was created by <strong>Guido van Rossum</strong> in the late 1980s and has since become one of the most popular programming languages worldwide. Python is easy to read, write, and maintain, making it an excellent choice for beginners.</p>
     </div>
 
@@ -175,13 +194,13 @@
 
     <div class="section fade-in">
         <h2>Writing Your First Python Code</h2>
-        <p>Let’s start by writing a simple Python program. Here’s how you can print "Hello, World!" to the screen:</p>
+        <p>Let's start by writing a simple Python program. Here's how you can print "Hello, World!" to the screen:</p>
         <pre><code>print("Hello, World!")</code></pre>
         <p>When you run this code, Python will display the message "Hello, World!" on the screen.</p>
     </div>
 
     <div class="section activity fade-in">
-        <h3>Let’s Practice!</h3>
+        <h3>Let's Practice!</h3>
         <p>Try writing a Python program that prints your name:</p>
         <pre><code>print("Your Name")</code></pre>
         <p>Replace "Your Name" with your actual name, and run the program!</p>
@@ -189,11 +208,20 @@
 
     <div class="section quiz fade-in">
         <h3>Quick Quiz</h3>
-        <ol>
-            <li>Who created Python?</li>
-            <li>What are some common applications of Python?</li>
-            <li>How do you print something in Python?</li>
-        </ol>
+        <div class="game-instructions">
+            <p>Test your Python knowledge with our interactive Mario Quiz Game!</p>
+            <p><strong>How to play:</strong></p>
+            <ul>
+                <li>Use 'A' and 'D' keys to move Mario left and right</li>
+                <li>Move to Wario to trigger a Python question</li>
+                <li>Answer by pressing the correct letter (A, B, C or D)</li>
+                <li>Correct answers damage Wario - defeat him by answering correctly!</li>
+                <li>Press 'R' to toggle read aloud feature</li>
+            </ul>
+        </div>
+        <div id="game-container">
+            <iframe id="game-frame" width="720" height="250" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+        </div>
     </div>
 
     <div class="section challenge fade-in">
