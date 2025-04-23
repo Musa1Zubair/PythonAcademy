@@ -3,215 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction to Python</title>
+    <title>Learn Python - Introduction</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #eff1ef;
-            color: #FFD700;
-            scroll-behavior: smooth;
-        }
-        a, button {
-            cursor: pointer;
-        }
-        a:focus, button:focus {
-            outline: 3px solid #FFD700;
-        }
-        h1 {
-            font-size: 2.5rem;
-            text-align: center;
-        }
-        h2 {
-            font-size: 2rem;
-            color: #FFA500;
-        }
-        h3 {
-            font-size: 1.5rem;
-            color: #FFA500;
-        }
-        p {
-            font-size: 1.1rem;
-        }
-        code {
-            background-color: #002d00;
-            padding: 4px 8px;
-            border-radius: 3px;
-            font-family: "Courier New", Courier, monospace;
-        }
-        pre {
-            background-color: #002d00;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-            color: #FFD700;
-        }
-        .section {
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 800px;
-            background: #003500;
-            border-radius: 10px;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 1rem;
-            color: #004000;
-            background-color: #FFD700;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            border: none;
-        }
-        .button:hover, .button:focus {
-            background-color: #FFA500;
+            background-color: #f5f5f5;
+            color: #333;
         }
         header {
-            background: #002d00;
-            color: #FFD700;
-            padding: 40px 20px;
-            text-align: center;
-            border-bottom: 5px solid #FFA500;
-        }
-        footer {
-            text-align: center;
+            background-color: #4CAF50;
+            color: white;
             padding: 20px;
-            background: #002d00;
-            color: #FFD700;
-            margin-top: 40px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
-    <script>
-        let speech;
-        let isPaused = false;
-
-        function getFemaleVoice() {
-            let voices = window.speechSynthesis.getVoices();
-            return voices.find(voice => 
-                voice.name.includes("Female") || 
-                voice.name.includes("Google UK English Female") || 
-                voice.name.includes("Microsoft Zira") ||
-                voice.name.includes("Google US English")
-            ) || voices[0]; 
-        }
-
-        function speakText() {
-            window.speechSynthesis.cancel();
-            let content = document.body.innerText;
-            speech = new SpeechSynthesisUtterance(content);
-            
-            speech.voice = getFemaleVoice();
-            speech.lang = "en-US";
-            speech.rate = 0.95;
-            speech.pitch = 1.2;
-            
-            window.speechSynthesis.speak(speech);
-        }
-
-        function pauseSpeech() {
-            if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
-                window.speechSynthesis.pause();
-                isPaused = true;
-            }
-        }
-
-        function resumeSpeech() {
-            if (window.speechSynthesis.paused) {
-                window.speechSynthesis.resume();
-                isPaused = false;
-            }
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.code === 'Space') {
-                e.preventDefault();
-                if (isPaused) {
-                    resumeSpeech();
-                } else {
-                    pauseSpeech();
-                }
-            }
-        });
-
-        window.onload = function() {
-            window.scrollTo(0, 0);
-        };
-
-        window.speechSynthesis.onvoiceschanged = () => {
-            speech = new SpeechSynthesisUtterance();
-            speech.voice = getFemaleVoice();
-        };
-    </script>
 </head>
 <body>
     <header>
-        <h1>Introduction to Python</h1>
-        <p>Learn the basics of Python programming!</p>
+        <h1>Learn Python</h1>
+        <p>Start your journey with one of the most popular programming languages.</p>
     </header>
+    <div class="content">
+        <div class="section fade-in">
+            <h2>Introduction to Python</h2>
+            <p>Python is a high-level, interpreted programming language known for its readability and versatility. It's used in web development, data science, automation, and more.</p>
+        </div>
 
-    <button class="button" onclick="speakText()">🔊 Read Aloud</button>
-    <button class="button" onclick="pauseSpeech()">⏸ Pause</button>
-    <button class="button" onclick="resumeSpeech()">▶ Resume</button>
+        <div class="section fade-in">
+            <h3>Why Learn Python?</h3>
+            <ul>
+                <li>Easy to learn and use</li>
+                <li>Large community and libraries</li>
+                <li>Versatile across domains</li>
+            </ul>
+        </div>
 
-    <div class="section fade-in">
-        <h2>What is Python?</h2>
-        <p>Python is a high-level programming language that’s known for its simplicity and versatility. It's used for building websites, analyzing data, automating tasks, and much more!</p>
-        <p>Python was created by <strong>Guido van Rossum</strong> in the late 1980s and has since become one of the most popular programming languages worldwide. Python is easy to read, write, and maintain, making it an excellent choice for beginners.</p>
+        <div class="section fade-in">
+            <h3>Example Code</h3>
+            <p>Here’s a simple example of Python code:</p>
+            <pre><code>print("Hello, world!")</code></pre>
+        </div>
+
+        <div class="section game-prompt fade-in">
+            <h3>🎮 Ready to Play?</h3>
+            <p>Test your Python knowledge in an interactive way! Instead of a traditional quiz, play our fun <strong>Mario Coding Quiz Game</strong>.</p>
+            <p>Move Mario with <code>A</code> and <code>D</code> keys and answer Python questions to defeat Wario!</p>
+            <p>When prompted, press <code>A</code>, <code>B</code>, <code>C</code>, or <code>D</code> to answer each question.</p>
+            <p><strong>How to play:</strong></p>
+            <ul>
+                <li>Download the game by clicking the button below.</li>
+                <li>Unzip and run <code>main.py</code> (make sure you have Python and Pygame installed).</li>
+            </ul>
+            <a class="button" href="YOUR_GAME_DOWNLOAD_LINK.zip" download>⬇ Download the Game</a>
+        </div>
     </div>
-
-    <div class="section fade-in">
-        <h2>Why Learn Python?</h2>
-        <p>Python is used in many fields such as:</p>
-        <ul>
-            <li><strong>Web Development:</strong> Python can be used to create dynamic websites using frameworks like Django or Flask.</li>
-            <li><strong>Data Science:</strong> Python is great for analyzing data, using libraries like Pandas and NumPy.</li>
-            <li><strong>Machine Learning:</strong> Python has powerful tools like TensorFlow and scikit-learn for AI and machine learning tasks.</li>
-            <li><strong>Automation:</strong> With Python, you can automate repetitive tasks, like organizing files or sending emails.</li>
-        </ul>
-    </div>
-
-    <div class="section fade-in">
-        <h2>Writing Your First Python Code</h2>
-        <p>Let’s start by writing a simple Python program. Here’s how you can print "Hello, World!" to the screen:</p>
-        <pre><code>print("Hello, World!")</code></pre>
-        <p>When you run this code, Python will display the message "Hello, World!" on the screen.</p>
-    </div>
-
-    <div class="section activity fade-in">
-        <h3>Let’s Practice!</h3>
-        <p>Try writing a Python program that prints your name:</p>
-        <pre><code>print("Your Name")</code></pre>
-        <p>Replace "Your Name" with your actual name, and run the program!</p>
-    </div>
-
-    <div class="section quiz fade-in">
-        <h3>Quick Quiz</h3>
-        <ol>
-            <li>Who created Python?</li>
-            <li>What are some common applications of Python?</li>
-            <li>How do you print something in Python?</li>
-        </ol>
-    </div>
-
-    <div class="section challenge fade-in">
-        <h3>Challenge</h3>
-        <p>Write a Python program that prints your name, age, and favorite color in one sentence, like this:</p>
-        <pre><code>My name is [name], I am [age] years old, and my favorite color is [color].</code></pre>
-    </div>
-
-    <div class="section editor-container fade-in">
-        <h2>Try It Yourself!</h2>
-        <p>Use the code editor below to practice writing your first Python program:</p>
-        <iframe src="https://trinket.io/embed/python" width="100%" height="400" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
-    </div>
-
-    <footer>
-        <button onclick="nextModule(2)">Next Lesson</button> | <a href="#">Back to Top</a>
-    </footer>
-    <script src="../js/app.js"></script>
-
 </body>
 </html>
